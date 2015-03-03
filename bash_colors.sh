@@ -8,8 +8,12 @@
 #                                                                              #
 ################################################################################
 
+if [[ $COLORTERM = gnome-* && $TERM = xterm ]] && infocmp gnome-256color >/dev/null 2>&1; then export TERM=gnome-256color
+elif infocmp xterm-256color >/dev/null 2>&1; then export TERM=xterm-256color
+fi
+
 # List all colors
-# ( x=`tput op` y=`printf %$((${COLUMNS}-6))s`;for i in {0..256};do o=00$i;echo -e ${o:${#o}-3:3} `tput setaf $i;tput setab $i`${y// /=}$x;done; ) 
+# ( x=`tput op` y=`printf %$((${COLUMNS}-6))s`;for i in {0..256};do o=00$i;echo -e ${o:${#o}-3:3} `tput setaf $i;tput setab $i`${y// /=}$x;done; )
 
 
 NORMAL=$(tput sgr0) # Reset text format to the terminal's default
