@@ -14,9 +14,9 @@ if [ -f ~/bash_files/bash_colors.sh ]; then
 fi
 
 # Bash prompt
-if [ -f ~/bash_files/bash_prompt.sh ]; then
-    . ~/bash_files/bash_prompt.sh
-fi
+# if [ -f ~/bash_files/bash_prompt.sh ]; then
+#     . ~/bash_files/bash_prompt.sh
+# fi
 
 # Bash greeter
 if [ -f ~/bash_files/bash_greeter.sh ]; then
