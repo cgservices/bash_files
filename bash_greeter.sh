@@ -29,7 +29,7 @@ __print_hostname ()
 __print_sysinfo ()
 {
     printf ${ORANGE}
-    __print_centered_string "-= $(uname -srmo) =-" "0"
+    __print_centered_string "-= $(lsb_release -d -s) $(uname -srmo) =-" "0"
 
     printf "${NORMAL}\n"
     __print_line
@@ -38,12 +38,17 @@ __print_sysinfo ()
 
 __print_diskinfo ()
 {
-    # disk usage, minus def and swap
-    local DISK_INFO=$(df -h -x tmpfs -x devtmpfs -x ecryptfs -x fuse.encfs -T)
-
     printf ${POWDER_BLUE}
-    __print_centered_multiline "$DISK_INFO" "0"
-    # printf "%s\n" "$DISK_INFO" | boxes -d ada-box -ph8v1
+    __print_centered_multiline "$(df -h -x tmpfs -x devtmpfs -x ecryptfs -x fuse.encfs -T)" "0"
+
+    printf "${NORMAL}\n"
+    __print_line
+}
+
+__print_landscape_info ()
+{
+    printf ${POWDER_BLUE}
+    __print_centered_multiline "$(landscape-sysinfo)" "0"
 
     printf "${NORMAL}\n"
     __print_line
@@ -51,13 +56,8 @@ __print_diskinfo ()
 
 __print_lastlogins ()
 {
-    # LAST_LOGINS=$(last -in 3 -ad)
-    # printf "%s\n" "$LAST_LOGINS" | boxes -d ada-box -ph8v1
-    local LAST_LOGINS=$(last -in 3 -ad)
-    #local linecount=$(printf "%s\n" "$LAST_LOGINS" | grep -c '^')
-
     printf ${GREY}
-    __print_centered_multiline "$LAST_LOGINS" "0"
+    __print_centered_multiline "$(last -in 3 -ad)" "0"
 
     printf "${NORMAL}\n"
     __print_line
@@ -70,6 +70,8 @@ __print_lastlogins ()
 __print_hostname
 
 __print_sysinfo
+
+__print_landscape_info
 
 __print_diskinfo
 
