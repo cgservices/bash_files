@@ -16,20 +16,20 @@ __print_hostname ()
 {
     if [[ -x /usr/bin/figlet ]]; then
        printf ${BLUE}
-        __print_ascii_art "-= CREATIVE GROUP =-"
+        __print_ascii_art "-= $COMPANY_NAME =-"
     fi
     printf ${WHITE}
     __print_centered_string "-= $(hostname) =-" "0"
+
+    printf "${NORMAL}\n"
+    __print_line
   }
 
 
 __print_sysinfo ()
 {
-    local SYS_INFO=$(uname -srmo)
-    local SYS_INFO="-= $SYS_INFO =-"
-
     printf ${ORANGE}
-    __print_centered_string "$SYS_INFO" "0"
+    __print_centered_string "-= $(uname -srmo) =-" "0"
 
     printf "${NORMAL}\n"
     __print_line
